@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import DashboardCards from './dashboardcards';
+import Transactions from './transactions';
+
 import './vendor/bootstrap/css/bootstrap.min.css';
 import './vendor/metisMenu/metisMenu.min.css';
 import './dist/css/sb-admin-2.css';
 import './vendor/morrisjs/morris.css';
 import './vendor/font-awesome/css/font-awesome.min.css';
+
 
 
 class App extends Component {
@@ -13,6 +17,7 @@ class App extends Component {
         margin: 0
      }
     return (
+      <Router>
         <div data-id="wrapper">
 
         <nav className="navbar navbar-default navbar-static-top"  data-role="navigation" style={navStyle}>
@@ -39,32 +44,24 @@ class App extends Component {
                             </div>
 
                         </li>
-                        <li>
-                            <a data-href="index.html"><i className="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-
-                        <li>
-                            <a data-href="transactions.html"><i className="fa fa-table fa-fw"></i> Transactions</a>
-                        </li>
-                        <li>
-                            <a data-href="users.html"><i className="fa fa-edit fa-fw"></i> Users</a>
-                        </li>
-                        <li>
-                            <a data-href="comments.html"><i className="fa fa-edit fa-fw"></i> Comments</a>
-                        </li>
-                        <li>
-                            <a data-href="reconciliation.html"><i className="fa fa-bar-chart-o  fa-fw"></i> Reconciliation</a>
-
-                        </li>
+                         <li><Link to={'/'}><i className="fa fa-dashboard fa-fw"></i>Home</Link></li>
+                         <li><Link to={'/Transactions'}><i className="fa fa-table fa-fw"></i>Transactions</Link></li>
+                        <li><Link to={''}><i className="fa fa-user fa-fw"></i> Users</Link></li>
+                        <li><Link to={''}><i className="fa fa-edit fa-fw"></i>Comments</Link></li>
+                        <li><Link to={''}><i className="fa fa-bar-chart-o  fa-fw"></i>Reconciliation</Link></li>
                     </ul>
                 </div>
 
             </div>
 
         </nav>
-        <DashboardCards/>
+        <Switch>
+                          <Route exact path='/' component={DashboardCards} />
+                          <Route exact path='/Transactions' component={Transactions} />
+                       </Switch>
 
       </div>
+      </Router>
     );
   }
 }
